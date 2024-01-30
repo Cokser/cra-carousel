@@ -1,40 +1,30 @@
 import { createServer, Model } from "miragejs";
+import { ListItemDto, QuestionsListDto } from "../models/questions";
 
 type ServerProps = {
   environment: string;
 }
 
-export interface ListItemDto {
-  id: number;
-  headline: string;
-  question: string;
-}
-
-export interface QuestionsListDto {
-  questions: ListItemDto[];
-}
-
-
 const ITEMS_LIST: ListItemDto[] = [
   {
     id: 0,
-    headline: "Complete the task",
-    question: "question number 1"
+    title: "How was your week overall?",
+    options: [{icon: "yes", label: "yes"}, {icon: "no", label: "no"}],
   },
   {
     id: 1,
-    headline: "Complete the task",
-    question: "question number 2"
+    title: "question number 2",
+    options: [{icon: "yes", label: "yes"}, {icon: "no", label: "no"}],
   },
   {
     id: 2,
-    headline: "Complete the task",
-    question: "question number 3"
+    title: "question number 3",
+    options: [{icon: "yes", label: "yes"}, {icon: "no", label: "no"}],
   },
   {
     id: 3,
-    headline: "Complete the task",
-    question: "question number 4"
+    title: "question number 4",
+    options: [{icon: "yes", label: "yes"}, {icon: "no", label: "no"}],
   },
 ];
 
