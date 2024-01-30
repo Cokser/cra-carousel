@@ -6,7 +6,7 @@ Main stack:
 
 - [TypeScript](https://github.com/microsoft/TypeScript)
 - [Create React App](https://github.com/facebook/create-react-app)
-- [https://github.com/tailwindlabs/tailwindcss](https://github.com/tailwindlabs/tailwindcss)
+- [Tailwind](https://github.com/tailwindlabs/tailwindcss)
 - [Jest](https://github.com/jestjs/jest)
 
 ## Available Scripts
