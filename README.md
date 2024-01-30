@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with.
+# Vertical React Carousel
 
 Main stack:
 
