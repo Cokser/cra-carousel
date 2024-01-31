@@ -9,6 +9,7 @@ const ITEMS_LIST: ListItemDto[] = [
   {
     id: 0,
     title: "How was your week overall?",
+    isSammary: false,
     options: [
       {
         id: 0,
@@ -30,6 +31,7 @@ const ITEMS_LIST: ListItemDto[] = [
   {
     id: 1,
     title: "How are you feeling today?",
+    isSammary: false,
     options: [
       {
         id: 0,
@@ -51,6 +53,7 @@ const ITEMS_LIST: ListItemDto[] = [
   {
     id: 2,
     title: "question number 3",
+    isSammary: false,
     options: [
       {
         id: 0,
@@ -72,6 +75,7 @@ const ITEMS_LIST: ListItemDto[] = [
   {
     id: 3,
     title: "question number 4",
+    isSammary: false,
     options: [
       {
         id: 0,
@@ -102,6 +106,13 @@ export function makeServer({ environment = "test" }: ServerProps) {
           questions: ITEMS_LIST,
         })
       );
+
+      // POST REQUEST
+      this.post("/api/questions", (schema, request) => {
+        const body = JSON.parse(request.requestBody);
+        console.log("body", body);
+        return body;
+      });
     },
   });
 

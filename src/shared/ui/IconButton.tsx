@@ -4,7 +4,7 @@ import ThumbsUpIcon from "./ThumbsUpIcon";
 import ThumbsDownIcon from "./ThumbsDownIcon";
 
 type IconButtonProps = {
-  type: string;
+  type?: string;
 };
 
 function IconButton({ type }: IconButtonProps) {

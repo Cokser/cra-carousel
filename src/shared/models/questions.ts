@@ -1,5 +1,3 @@
-import { ReactElement, ReactNode } from "react";
-
 export interface OptionDto {
   id: number;
   icon: string;
@@ -8,7 +6,9 @@ export interface OptionDto {
 export interface ListItemDto {
   id: number;
   title: string;
-  options: OptionDto[];
+  options?: OptionDto[];
+  answer?: OptionDto;
+  isSammary?: boolean;
 }
 
 export interface QuestionsListDto {

@@ -2,14 +2,27 @@ import React from "react";
 import { OptionDto } from "../shared/models/questions";
 import IconButton from "../shared/ui/IconButton";
 
-type PollOptionProps = OptionDto;
+interface PollOptionProps extends OptionDto {
+  handlePoll: (id: number, item: OptionDto) => void;
+  questionId: number;
+  answer?: OptionDto;
+}
 
-function PollOption({ icon, label }: PollOptionProps) {
+function PollOption({
+  questionId,
+  id,
+  icon,
+  label,
+  handlePoll,
+  answer,
+}: PollOptionProps) {
+  const isSelected = answer?.id === id && "bg-slate-100 shadow";
   return (
     <div className="m-4">
       <button
+        onClick={() => handlePoll(questionId, { id, icon, label })}
         type="button"
-        className="hover:bg-slate-50 rounded-[50%] p-8 hover:shadow transition-all duration-300"
+        className={`rounded-[50%] p-8 transition-all duration-300 hover:bg-slate-50 hover:shadow ${isSelected}`}
       >
         <IconButton type={icon} />
       </button>
