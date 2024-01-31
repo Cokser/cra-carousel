@@ -1,6 +1,6 @@
 import React from "react";
 import { ListItemDto, QuestionsListDto } from "../../shared/models/questions";
-import IconButton from "../../shared/ui/IconButton";
+import { IconButton } from "../../shared/ui";
 
 export interface SammaryProps {
   questions: ListItemDto[];

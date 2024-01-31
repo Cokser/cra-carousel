@@ -1,10 +1,6 @@
 import { createServer } from "miragejs";
 import { ListItemDto, QuestionsListDto } from "../models/questions";
 
-type ServerProps = {
-  environment: string;
-};
-
 const ITEMS_LIST: ListItemDto[] = [
   {
     id: 0,
@@ -96,10 +92,15 @@ const ITEMS_LIST: ListItemDto[] = [
   },
 ];
 
+type ServerProps = {
+  environment: string;
+};
+
 export function makeServer({ environment = "test" }: ServerProps) {
   let server = createServer({
     environment,
     routes() {
+      // GET REQUEST
       this.get(
         "/api/questions",
         (): QuestionsListDto => ({

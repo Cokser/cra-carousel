@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "../CarouselPoll";
 import logo from "../logo.svg";
-import { PollContext } from "../shared/utilities/PollProvider";
+import { PollContext } from "../shared/hooks/usePollContext";
 import { ListItemDto, QuestionsListDto } from "../shared/models/questions";
 import { useCarouselForm } from "../shared/hooks/useCarouselForm";
 

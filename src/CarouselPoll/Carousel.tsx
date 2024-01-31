@@ -4,28 +4,27 @@ import {
   OptionDto,
   QuestionsListDto,
 } from "../shared/models/questions";
-import PollOption from "./PollOption";
-import { usePollContext } from "../shared/utilities/PollProvider";
+import PollOption from "./PollOption/PollOption";
+import { usePollContext } from "../shared/hooks/usePollContext";
 import Sammary from "./Sammary/Sammary";
+import PollNavigation from "./PollNavigation/PollNavigation";
 
-type CarouselProps = {
+interface CarouselProps {
   handleQuestion: (items: ListItemDto[]) => void;
   hadnleSubmit: (obj: QuestionsListDto) => void;
-};
+}
 
 export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
+  const questions = usePollContext();
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [showSubmit, setShowSubmit] = useState(false);
-  const questions = usePollContext();
 
   const handleActive = (id: number) => {
     if (id === questions.length - 1) {
-      console.log("setShowSubmit", id);
       setShowSubmit(true);
     } else {
       setShowSubmit(false);
     }
-
     setActiveQuestion(id);
   };
 
@@ -43,7 +42,6 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
     handleQuestion(result);
     // handleActive(id + 1);
   };
-  // console.log("questions", questions);
 
   return (
     <div className="h-screen overflow-hidden">
@@ -101,17 +99,11 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
       )}
       )
       <div className="fixed inset-0 flex flex-col w-[20px] left-2 items-center justify-center">
-        {questions?.map((item: ListItemDto) => (
-          <div key={item.id}>
-            <button
-              type="button"
-              className={`w-4 h-4 rounded-lg border-2 border-white transition ease-in-out delay-50 hover:bg-indigo-300  ${
-                activeQuestion === item.id ? "bg-transparent" : "bg-white"
-              }`}
-              onClick={() => handleActive(item.id)}
-            />
-          </div>
-        ))}
+        <PollNavigation
+          handleActive={handleActive}
+          questions={questions}
+          activeQuestion={activeQuestion}
+        />
       </div>
     </div>
   );

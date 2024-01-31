@@ -1,6 +1,6 @@
 import React from "react";
-import { OptionDto } from "../shared/models/questions";
-import IconButton from "../shared/ui/IconButton";
+import { OptionDto } from "../../shared/models/questions";
+import { IconButton } from "../../shared/ui";
 
 interface PollOptionProps extends OptionDto {
   handlePoll: (id: number, item: OptionDto) => void;
