@@ -7,3 +7,5 @@ import { App } from "../App/App";
 //   const headerElement = screen.(/main/i);
 //   expect(headerElement).toBeInTheDocument();
 // });
+// describe("Test App component", () => {});
+// it("should fetch data from API", () => {});

@@ -14,7 +14,7 @@ function Sammary({ questions, hadnleSubmit }: SammaryProps) {
           (questionItem: ListItemDto) =>
             questionItem.isSammary === false && (
               <div className="h-[100px] text-center" key={questionItem.id}>
-                <p className="text-white text-4xl font-bold">
+                <p className="text-white text-3xl font-bold">
                   {questionItem.title}
                 </p>
               </div>

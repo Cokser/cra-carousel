@@ -1,7 +1,7 @@
 import { createServer } from "miragejs";
 import { ListItemDto, QuestionsListDto } from "../models/questions";
 
-const ITEMS_LIST: ListItemDto[] = [
+export const ITEMS_LIST: ListItemDto[] = [
   {
     id: 0,
     title: "How was your week overall?",
@@ -111,7 +111,6 @@ export function makeServer({ environment = "test" }: ServerProps) {
       // POST REQUEST
       this.post("/api/questions", (schema, request) => {
         const body = JSON.parse(request.requestBody);
-        console.log("body", body);
         return body;
       });
     },
