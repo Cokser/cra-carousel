@@ -48,7 +48,7 @@ const ITEMS_LIST: ListItemDto[] = [
   },
   {
     id: 2,
-    title: "question number 3",
+    title: "Will you have a good day tomorrow?",
     isSammary: false,
     options: [
       {
@@ -70,7 +70,7 @@ const ITEMS_LIST: ListItemDto[] = [
   },
   {
     id: 3,
-    title: "question number 4",
+    title: "Did you liked the Project?",
     isSammary: false,
     options: [
       {
@@ -80,13 +80,13 @@ const ITEMS_LIST: ListItemDto[] = [
       },
       {
         id: 1,
-        icon: "ThinkingIcon",
-        label: "Not Sure",
+        icon: "ThumbsUpIcon",
+        label: "Yes",
       },
       {
         id: 2,
-        icon: "ThumbsDownIcon",
-        label: "No",
+        icon: "ThumbsUpIcon",
+        label: "Yes",
       },
     ],
   },

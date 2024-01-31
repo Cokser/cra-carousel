@@ -48,24 +48,19 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
       {questions?.map((item: ListItemDto) =>
         showSubmit === true ? (
           <div key={item.id} className="flex">
-            <div className="flex w-full fixed">
+            <div
+              className="flex w-full fixed"
+              style={{
+                transform: `translateY(-${activeQuestion * 100}%)`,
+              }}
+            >
               <Sammary questions={questions} hadnleSubmit={hadnleSubmit} />
             </div>
             <div className="flex w-full">
               <div className="flex w-1/2 bg-indigo-500 justify-start items-center pl-16">
-                <p className="text-white text-4xl font-bold">{item.title}</p>
+                <span className="text-white text-4xl font-bold" />
               </div>
-              <div className="flex w-1/2 bg-white h-screen justify-center items-center">
-                {item?.options?.map((props) => (
-                  <PollOption
-                    key={props.id}
-                    {...props}
-                    questionId={item.id}
-                    handlePoll={handlePoll}
-                    answer={item.answer}
-                  />
-                ))}
-              </div>
+              <div className="flex w-1/2 bg-white h-screen justify-center items-center" />
             </div>
           </div>
         ) : (

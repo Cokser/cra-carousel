@@ -9,14 +9,14 @@ type IconButtonProps = {
 
 function IconButton({ type }: IconButtonProps) {
   switch (type) {
-    case "ThinkingIcon": {
-      return <ThinkingIcon />;
+    case "ThumbsDownIcon": {
+      return <ThumbsDownIcon />;
     }
     case "ThumbsUpIcon": {
       return <ThumbsUpIcon />;
     }
     default: {
-      return <ThumbsDownIcon />;
+      return <ThinkingIcon />;
     }
   }
 }

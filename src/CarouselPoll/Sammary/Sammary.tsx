@@ -9,17 +9,17 @@ export interface SammaryProps {
 function Sammary({ questions, hadnleSubmit }: SammaryProps) {
   return (
     <>
-      <div className="flex flex-col w-1/2 bg-indigo-500 h-screen justify-center items-center p-10 animate-slide-in">
+      <div className="flex flex-col w-1/2 bg-indigo-500 ml-8 h-screen justify-center items-center p-10 animate-slide-in">
         {questions?.map(
           (questionItem: ListItemDto) =>
             questionItem.isSammary === false && (
-              <div className="h-[100px]" key={questionItem.id}>
+              <div className="h-[100px] text-center" key={questionItem.id}>
                 <p className="text-white text-4xl font-bold">
                   {questionItem.title}
                 </p>
               </div>
             )
-        )}{" "}
+        )}
         <button
           type="submit"
           onClick={() => hadnleSubmit({ questions })}
@@ -32,13 +32,16 @@ function Sammary({ questions, hadnleSubmit }: SammaryProps) {
         {questions?.map(
           (questionItem: ListItemDto) =>
             questionItem.isSammary === false && (
-              <div className="h-[100px]" key={questionItem.id}>
-                <p>
-                  <IconButton type={questionItem.answer?.icon} />
-                </p>
+              <div
+                className="flex h-[100px] w-[150px] justify-start items-center"
+                key={questionItem.id}
+              >
+                <IconButton type={questionItem.answer?.icon} />
+                <span className="ml-4">{questionItem.answer?.label}</span>
               </div>
             )
         )}
+        <span className="ml-4 h-[100px] w-[150px] justify-start items-center" />
       </div>
     </>
   );
