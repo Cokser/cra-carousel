@@ -15,13 +15,16 @@ type CarouselProps = {
 
 export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
   const [activeQuestion, setActiveQuestion] = useState(0);
+  const [showSubmit, setShowSubmit] = useState(false);
   const questions = usePollContext();
 
   const handleActive = (id: number) => {
-    console.log("handleActive", id);
-    // if (id === questions.length) {
-    //   return null;
-    // }
+    if (id === questions.length - 1) {
+      console.log("setShowSubmit", id);
+      setShowSubmit(true);
+    } else {
+      setShowSubmit(false);
+    }
 
     setActiveQuestion(id);
   };
@@ -45,13 +48,28 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
   return (
     <div className="h-screen overflow-hidden">
       {questions?.map((item: ListItemDto) =>
-        item.isSammary === true ? (
-          <Sammary
-            key={item.id}
-            questions={questions}
-            hadnleSubmit={hadnleSubmit}
-            transition={`translateY(-${activeQuestion * 100}%)`}
-          />
+        showSubmit === true ? (
+          <div key={item.id} className="flex">
+            <div className="flex w-full fixed">
+              <Sammary questions={questions} hadnleSubmit={hadnleSubmit} />
+            </div>
+            <div className="flex w-full">
+              <div className="flex w-1/2 bg-indigo-500 justify-start items-center pl-16">
+                <p className="text-white text-4xl font-bold">{item.title}</p>
+              </div>
+              <div className="flex w-1/2 bg-white h-screen justify-center items-center">
+                {item?.options?.map((props) => (
+                  <PollOption
+                    key={props.id}
+                    {...props}
+                    questionId={item.id}
+                    handlePoll={handlePoll}
+                    answer={item.answer}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         ) : (
           <div className="flex w-full" key={item.id}>
             <div
@@ -81,6 +99,7 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
           </div>
         )
       )}
+      )
       <div className="fixed inset-0 flex flex-col w-[20px] left-2 items-center justify-center">
         {questions?.map((item: ListItemDto) => (
           <div key={item.id}>

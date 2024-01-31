@@ -4,20 +4,16 @@ import IconButton from "../../shared/ui/IconButton";
 
 export interface SammaryProps {
   questions: ListItemDto[];
-  transition: string;
   hadnleSubmit: (obj: QuestionsListDto) => void;
 }
-function Sammary({ questions, transition, hadnleSubmit }: SammaryProps) {
+function Sammary({ questions, hadnleSubmit }: SammaryProps) {
   return (
-    <div className="flex w-full">
-      <div
-        className="flex flex-col w-1/2 bg-indigo-500 h-screen justify-center items-center transition easy-out duration-700 p-10"
-        style={{ transform: transition }}
-      >
+    <>
+      <div className="flex flex-col w-1/2 bg-indigo-500 h-screen justify-center items-center p-10 animate-slide-in">
         {questions?.map(
           (questionItem: ListItemDto) =>
             questionItem.isSammary === false && (
-              <div className="h-[100px]">
+              <div className="h-[100px]" key={questionItem.id}>
                 <p className="text-white text-4xl font-bold">
                   {questionItem.title}
                 </p>
@@ -32,10 +28,7 @@ function Sammary({ questions, transition, hadnleSubmit }: SammaryProps) {
           Submit
         </button>
       </div>
-      <div
-        className="flex flex-col w-1/2 bg-white h-screen justify-center items-center transition easy-out duration-700"
-        style={{ transform: transition }}
-      >
+      <div className="flex flex-col w-1/2 bg-white h-screen justify-center items-center animate-slide-in">
         {questions?.map(
           (questionItem: ListItemDto) =>
             questionItem.isSammary === false && (
@@ -47,7 +40,7 @@ function Sammary({ questions, transition, hadnleSubmit }: SammaryProps) {
             )
         )}
       </div>
-    </div>
+    </>
   );
 }
 
