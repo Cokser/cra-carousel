@@ -6,6 +6,8 @@ export const ITEMS_LIST: ListItemDto[] = [
     id: 0,
     title: "How was your week overall?",
     isSammary: false,
+    required: false,
+    allowChange: true,
     options: [
       {
         id: 0,
@@ -28,6 +30,8 @@ export const ITEMS_LIST: ListItemDto[] = [
     id: 1,
     title: "How are you feeling today?",
     isSammary: false,
+    required: true,
+    allowChange: false,
     options: [
       {
         id: 0,
@@ -50,6 +54,8 @@ export const ITEMS_LIST: ListItemDto[] = [
     id: 2,
     title: "Will you have a good day tomorrow?",
     isSammary: false,
+    required: false,
+    allowChange: false,
     options: [
       {
         id: 0,
@@ -72,6 +78,8 @@ export const ITEMS_LIST: ListItemDto[] = [
     id: 3,
     title: "Did you liked the Project?",
     isSammary: false,
+    required: true,
+    allowChange: true,
     options: [
       {
         id: 0,

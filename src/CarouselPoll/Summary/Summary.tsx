@@ -2,11 +2,11 @@ import React from "react";
 import { ListItemDto, QuestionsListDto } from "../../shared/models/questions";
 import { IconButton } from "../../shared/ui";
 
-export interface SammaryProps {
+export interface SummaryProps {
   questions: ListItemDto[];
-  hadnleSubmit: (obj: QuestionsListDto) => void;
+  handleSubmit: (obj: QuestionsListDto) => void;
 }
-function Sammary({ questions, hadnleSubmit }: SammaryProps) {
+function Summary({ questions, handleSubmit }: SummaryProps) {
   return (
     <>
       <div className="flex flex-col w-1/2 bg-indigo-500 ml-8 h-screen justify-center items-center p-10 animate-slide-in">
@@ -22,7 +22,7 @@ function Sammary({ questions, hadnleSubmit }: SammaryProps) {
         )}
         <button
           type="submit"
-          onClick={() => hadnleSubmit({ questions })}
+          onClick={() => handleSubmit({ questions })}
           className={`w-28 h-12 rounded-md border-2 border-white text-white transition ease-in-out delay-50 hover:bg-indigo-300`}
         >
           Submit
@@ -47,4 +47,4 @@ function Sammary({ questions, hadnleSubmit }: SammaryProps) {
   );
 }
 
-export default Sammary;
+export default Summary;

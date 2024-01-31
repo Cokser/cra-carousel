@@ -22,7 +22,11 @@ export function App() {
       {questions && (
         <main>
           <PollContext.Provider value={questions}>
-            <Carousel handleQuestion={setQuestions} hadnleSubmit={submitForm} />
+            <Carousel
+              handleQuestion={setQuestions}
+              handleSubmit={submitForm}
+              ordered
+            />
           </PollContext.Provider>
         </main>
       )}

@@ -8,6 +8,8 @@ export interface ListItemDto {
   title: string;
   options?: OptionDto[];
   answer?: OptionDto;
+  required?: boolean;
+  allowChange?: boolean;
   isSammary?: boolean;
 }
 

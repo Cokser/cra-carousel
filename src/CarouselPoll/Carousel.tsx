@@ -6,20 +6,42 @@ import {
 } from "../shared/models/questions";
 import PollOption from "./PollOption/PollOption";
 import { usePollContext } from "../shared/hooks/usePollContext";
-import Sammary from "./Sammary/Sammary";
+import Summary from "./Summary/Summary";
 import PollNavigation from "./PollNavigation/PollNavigation";
 
 interface CarouselProps {
   handleQuestion: (items: ListItemDto[]) => void;
-  hadnleSubmit: (obj: QuestionsListDto) => void;
+  handleSubmit: (obj: QuestionsListDto) => void;
+  ordered?: boolean;
 }
 
-export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
+export function Carousel({
+  handleQuestion,
+  handleSubmit,
+  ordered,
+}: CarouselProps) {
   const questions = usePollContext();
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [showSubmit, setShowSubmit] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleActive = (id: number) => {
+    const activeQuestionItem = questions.find(
+      (item) => activeQuestion === item.id
+    );
+    if (
+      ordered === true &&
+      activeQuestionItem &&
+      activeQuestionItem?.id < id - 1
+    ) {
+      return;
+    }
+    if (activeQuestionItem?.required && !activeQuestionItem.answer) {
+      setShowError(true);
+      return;
+    } else {
+      setShowError(false);
+    }
     if (id === questions.length - 1) {
       setShowSubmit(true);
     } else {
@@ -29,6 +51,15 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
   };
 
   const handlePoll = (id: number, answer: OptionDto) => {
+    const activeQuestionItem = questions.find(
+      (item) => activeQuestion === item.id
+    );
+    if (
+      activeQuestionItem?.allowChange === false &&
+      activeQuestionItem.answer
+    ) {
+      return;
+    }
     const result = questions.map((item: ListItemDto) => {
       if (item.id === id) {
         return {
@@ -39,6 +70,7 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
       return item;
     });
 
+    setShowError(false);
     handleQuestion(result);
     // handleActive(id + 1);
   };
@@ -46,7 +78,7 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
   return (
     <div className="h-screen overflow-hidden">
       {questions?.map((item: ListItemDto) =>
-        showSubmit === true ? (
+        showSubmit ? (
           <div key={item.id} className="flex">
             <div
               className="flex w-full fixed"
@@ -54,7 +86,7 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
                 transform: `translateY(-${activeQuestion * 100}%)`,
               }}
             >
-              <Sammary questions={questions} hadnleSubmit={hadnleSubmit} />
+              <Summary questions={questions} handleSubmit={handleSubmit} />
             </div>
             <div className="flex w-full">
               <div className="flex w-1/2 bg-indigo-500 justify-start items-center pl-16">
@@ -74,20 +106,27 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
               <p className="text-white text-4xl font-bold">{item.title}</p>
             </div>
             <div
-              className="flex w-1/2 bg-white h-screen justify-center items-center transition easy-out duration-700"
+              className="flex flex-col w-1/2 bg-white h-screen justify-center items-center transition easy-out duration-700"
               style={{
                 transform: `translateY(-${activeQuestion * 100}%)`,
               }}
             >
-              {item?.options?.map((props) => (
-                <PollOption
-                  key={props.id}
-                  {...props}
-                  questionId={item.id}
-                  handlePoll={handlePoll}
-                  answer={item.answer}
-                />
-              ))}
+              <div className="flex">
+                {item?.options?.map((props) => (
+                  <PollOption
+                    key={props.id}
+                    {...props}
+                    questionId={item.id}
+                    handlePoll={handlePoll}
+                    answer={item.answer}
+                  />
+                ))}
+              </div>
+              {showError && (
+                <span className="absolute translate-y-[100px] bg-white shadow p-4 mt-12 border rounded-md text-red-400 animate-pulse">
+                  This question is required!
+                </span>
+              )}
             </div>
           </div>
         )

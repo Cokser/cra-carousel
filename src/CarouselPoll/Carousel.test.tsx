@@ -8,7 +8,7 @@ describe("Carousel Component tests", () => {
     /* first we visit /login and test if the string in the element with class "login-label"  has"Please Log In" is there */
     render(
       <PollContext.Provider value={ITEMS_LIST}>
-        <Carousel hadnleSubmit={() => {}} handleQuestion={() => {}} />
+        <Carousel handleSubmit={() => {}} handleQuestion={() => {}} />
       </PollContext.Provider>
     );
     const item = screen.getByText(ITEMS_LIST[0].title);
