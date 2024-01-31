@@ -18,7 +18,7 @@ function PollOption({
 }: PollOptionProps) {
   const isSelected = answer?.id === id && "bg-slate-100 shadow";
   return (
-    <div className="m-4">
+    <div className="m-4 flex flex-col items-center h-16">
       <button
         onClick={() => handlePoll(questionId, { id, icon, label })}
         type="button"
@@ -26,6 +26,7 @@ function PollOption({
       >
         <IconButton type={icon} />
       </button>
+      {isSelected && <span className="mt-4">{label}</span>}
     </div>
   );
 }

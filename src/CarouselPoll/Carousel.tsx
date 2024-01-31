@@ -41,7 +41,7 @@ export function Carousel({ handleQuestion, hadnleSubmit }: CarouselProps) {
     });
 
     handleQuestion(result);
-    handleActive(id + 1);
+    // handleActive(id + 1);
   };
   // console.log("questions", questions);
 
