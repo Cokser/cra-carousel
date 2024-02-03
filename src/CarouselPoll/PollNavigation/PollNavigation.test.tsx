@@ -1,18 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import PollNavigation from "./PollNavigation";
 import { ITEMS_LIST } from "../../shared/api/mockApi";
 
 describe("PollNavigation Component tests", () => {
-  beforeEach(() => {
-    // write someting before each test
-  });
+  const activeQuestion = 2;
+  const handleActiveMock = jest.fn();
 
-  afterEach(() => {
-    // write someting after each test
-  });
-
-  test("Renders correctly initial buttins", async () => {
-    /* first we visit /login and test if the string in the element with class "login-label"  has"Please Log In" is there */
+  it("Renders correctly initial buttons", async () => {
     render(
       <PollNavigation
         questions={ITEMS_LIST}
@@ -21,7 +15,23 @@ describe("PollNavigation Component tests", () => {
       />
     );
     const buttons = screen.getAllByRole("button");
-    expect(buttons).toHaveLength(ITEMS_LIST.length);
     expect(buttons[0]).toBeInTheDocument();
+    expect(buttons).toHaveLength(ITEMS_LIST.length);
+  });
+
+  it("calls handleActive with correct id when a button is clicked", () => {
+    render(
+      <PollNavigation
+        questions={ITEMS_LIST}
+        activeQuestion={activeQuestion}
+        handleActive={handleActiveMock}
+      />
+    );
+
+    fireEvent.click(screen.getByTestId(ITEMS_LIST[1].id));
+    expect(handleActiveMock).toHaveBeenCalledWith(1);
+
+    fireEvent.click(screen.getByTestId(ITEMS_LIST[3].id));
+    expect(handleActiveMock).toHaveBeenCalledWith(3);
   });
 });

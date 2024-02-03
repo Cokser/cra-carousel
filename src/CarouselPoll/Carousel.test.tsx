@@ -1,17 +1,20 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { ITEMS_LIST } from "../shared/api/mockApi";
 import { Carousel } from "./Carousel";
 import { PollContext } from "../shared/hooks/usePollContext";
 
+const defaultComponent = (
+  <PollContext.Provider value={ITEMS_LIST}>
+    <Carousel handleSubmit={() => {}} handleQuestion={() => {}} />
+  </PollContext.Provider>
+);
+
 describe("Carousel Component tests", () => {
-  test("Renders correctly initial Carousel Component", () => {
-    /* first we visit /login and test if the string in the element with class "login-label"  has"Please Log In" is there */
-    render(
-      <PollContext.Provider value={ITEMS_LIST}>
-        <Carousel handleSubmit={() => {}} handleQuestion={() => {}} />
-      </PollContext.Provider>
-    );
-    const item = screen.getByText(ITEMS_LIST[0].title);
-    expect(item).toBeInTheDocument();
+  it("Renders correctly initial all slides", () => {
+    render(defaultComponent);
+    ITEMS_LIST.forEach((item) => {
+      const slide = screen.getByText(item.title);
+      expect(slide).toBeInTheDocument();
+    });
   });
 });

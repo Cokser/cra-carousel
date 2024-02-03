@@ -17,6 +17,7 @@ function PollNavigation({
       {questions?.map((item: ListItemDto) => (
         <div key={item.id}>
           <button
+            data-testid={item.id}
             type="button"
             className={`w-4 h-4 rounded-lg border-2 border-white transition ease-in-out delay-50 hover:bg-indigo-300  ${
               activeQuestion === item.id ? "bg-transparent" : "bg-white"

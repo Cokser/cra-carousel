@@ -1,12 +1,19 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { ITEMS_LIST } from "../../shared/api/mockApi";
 import Summary from "./Summary";
 
+const handleSubmitMock = jest.fn();
+
 describe("Summary Component tests", () => {
   test("Renders correctly initial button", async () => {
-    /* first we visit /login and test if the string in the element with class "login-label"  has"Please Log In" is there */
     render(<Summary questions={ITEMS_LIST} handleSubmit={() => {}} />);
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
+  });
+
+  it("calls handleSubmit with correct data on click", () => {
+    render(<Summary questions={ITEMS_LIST} handleSubmit={handleSubmitMock} />);
+    fireEvent.click(screen.getByText("Submit"));
+    expect(handleSubmitMock).toHaveBeenCalledWith({ questions: ITEMS_LIST });
   });
 });

@@ -13,18 +13,18 @@ export function App() {
     setQuestions(data);
   }, [data]);
 
-  const submitForm = (obj: QuestionsListDto) => {
+  const submitPoll = (obj: QuestionsListDto) => {
     handleSubmit(obj);
   };
 
   return (
-    <div className="bg-gray-800">
+    <div className="bg-gray-800" data-testid="carousel-wrapper">
       {questions && (
         <main>
           <PollContext.Provider value={questions}>
             <Carousel
               handleQuestion={setQuestions}
-              handleSubmit={submitForm}
+              handleSubmit={submitPoll}
               ordered
             />
           </PollContext.Provider>
