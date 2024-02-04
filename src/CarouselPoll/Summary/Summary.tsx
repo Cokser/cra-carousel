@@ -22,7 +22,7 @@ function Summary({ questions, handleSubmit }: SummaryProps) {
         )}
         <button
           type="submit"
-          onClick={() => handleSubmit({ questions })}
+          onClick={() => handleSubmit({ data: questions })}
           className={`w-28 h-12 rounded-md border-2 border-white text-white transition ease-in-out delay-50 hover:bg-indigo-300`}
         >
           Submit

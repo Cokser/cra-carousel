@@ -8,27 +8,27 @@ export function useCarouselForm() {
   useEffect(() => {
     getPolls().then((json) => {
       const summaryItem: ListItemDto = {
-        id: json.questions.length,
+        id: json.length,
         title: "Summary",
         options: [],
         isSammary: true,
       };
-      setData([...json.questions, summaryItem]);
+      setData([...json.data, summaryItem]);
     });
   }, []);
 
   const handleSubmit = (body: QuestionsListDto) => {
-    const filteredQuestions = body.questions.filter(
+    const filteredQuestions = body.data.filter(
       (question) => question.isSammary === false
     );
     postPolls(filteredQuestions).then((json) => {
       const summaryItem: ListItemDto = {
-        id: json.questions.length,
+        id: json.length,
         title: "Summary",
         options: [],
         isSammary: true,
       };
-      setData([...json.questions, summaryItem]);
+      setData([...json.data, summaryItem]);
     });
   };
 

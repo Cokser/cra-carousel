@@ -1,7 +1,7 @@
 import { ListItemDto } from "../models/questions";
 
 export const getPolls = async () => {
-  return await fetch("/api/questions").then((res) => res.json());
+  return fetch("/api/questions").then((res) => res.json());
 };
 
 export const postPolls = async (body: ListItemDto[]) => {
@@ -11,6 +11,6 @@ export const postPolls = async (body: ListItemDto[]) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ questions: body }),
+    body: JSON.stringify({ data: body }),
   }).then((res) => res.json());
 };

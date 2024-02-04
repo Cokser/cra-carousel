@@ -14,5 +14,5 @@ export interface ListItemDto {
 }
 
 export interface QuestionsListDto {
-  questions: ListItemDto[];
+  data: ListItemDto[];
 }

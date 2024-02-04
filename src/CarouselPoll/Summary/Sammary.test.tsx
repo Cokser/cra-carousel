@@ -3,17 +3,18 @@ import { ITEMS_LIST } from "../../shared/api/mockApi";
 import Summary from "./Summary";
 
 const handleSubmitMock = jest.fn();
+const questions = ITEMS_LIST.data;
 
 describe("Summary Component tests", () => {
   test("Renders correctly initial button", async () => {
-    render(<Summary questions={ITEMS_LIST} handleSubmit={() => {}} />);
+    render(<Summary questions={questions} handleSubmit={() => {}} />);
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
   });
 
   it("calls handleSubmit with correct data on click", () => {
-    render(<Summary questions={ITEMS_LIST} handleSubmit={handleSubmitMock} />);
+    render(<Summary questions={questions} handleSubmit={handleSubmitMock} />);
     fireEvent.click(screen.getByText("Submit"));
-    expect(handleSubmitMock).toHaveBeenCalledWith({ questions: ITEMS_LIST });
+    expect(handleSubmitMock).toHaveBeenCalledWith({ data: questions });
   });
 });

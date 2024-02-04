@@ -14,10 +14,10 @@ describe("Mock API Service", () => {
   });
 
   describe("GET /api/questions", () => {
-    it("should return the list of questions", async () => {
+    it("should return the json with questions data", async () => {
       const response = await fetch("/api/questions");
       const data: QuestionsListDto = await response.json();
-      expect(data.questions).toEqual(ITEMS_LIST);
+      expect(data).toEqual(ITEMS_LIST);
     });
   });
 
