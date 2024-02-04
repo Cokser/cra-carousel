@@ -18,9 +18,9 @@ export function App() {
   };
 
   return (
-    <div className="bg-gray-800" data-testid="carousel-wrapper">
+    <div className="bg-gray-800">
       {questions && (
-        <main>
+        <main data-testid="carousel-wrapper">
           <PollContext.Provider value={questions}>
             <Carousel
               handleQuestion={setQuestions}
