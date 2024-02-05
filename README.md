@@ -1,4 +1,4 @@
-# Vertical React Carousel
+# Vertical React Carousel Poll
 
 Main stack:
 
@@ -21,8 +21,8 @@ Main stack:
 export interface ListItemDto {
     id: number;
     title: string;
-    required?: boolean;
-    allowChange?: boolean;
+    required?: boolean;  // Requires selecting an option for current question
+    allowChange?: boolean;  // Allow change answer for current question
     isSammary?: boolean;
     options?: {
         id: number;
