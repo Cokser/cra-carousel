@@ -8,7 +8,7 @@ export function useCarouselForm() {
   useEffect(() => {
     getPolls().then((json) => {
       const summaryItem: ListItemDto = {
-        id: json.length,
+        id: json.data.length,
         title: "Summary",
         options: [],
         isSammary: true,
@@ -23,7 +23,7 @@ export function useCarouselForm() {
     );
     postPolls(filteredQuestions).then((json) => {
       const summaryItem: ListItemDto = {
-        id: json.length,
+        id: json.data.length,
         title: "Summary",
         options: [],
         isSammary: true,
