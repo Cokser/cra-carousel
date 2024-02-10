@@ -8,15 +8,18 @@ Main stack:
 - [Jest](https://github.com/jestjs/jest)
 
 ### Carousel Component has an option for step order:
+
 ```HTML
     <Carousel
       handleQuestion={setQuestions}
       hadnleSubmit={submitForm}
+      slideOnSelect   /**  if it's true slide will change on selecting the option  **/
       ordered   /**  if it's true user is not allowed skip forward steps  **/
     />
 ```
 
 ### Main Carousel Data Structure:
+
 ```TYPESCRIPT
 export interface ListItemDto {
     id: number;
