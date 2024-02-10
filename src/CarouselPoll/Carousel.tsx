@@ -12,18 +12,29 @@ import PollNavigation from "./PollNavigation/PollNavigation";
 interface CarouselProps {
   handleQuestion: (items: ListItemDto[]) => void;
   handleSubmit: (obj: QuestionsListDto) => void;
+  slideOnSelect?: boolean;
   ordered?: boolean;
 }
 
 export function Carousel({
   handleQuestion,
   handleSubmit,
+  slideOnSelect,
   ordered,
 }: CarouselProps) {
   const questions = usePollContext();
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [showSubmit, setShowSubmit] = useState(false);
   const [showError, setShowError] = useState(false);
+
+  const changeActiveSlide = (id: number) => {
+    if (id === questions.length - 1) {
+      setShowSubmit(true);
+    } else {
+      setShowSubmit(false);
+    }
+    setActiveQuestion(id);
+  };
 
   const handleActive = (id: number) => {
     const activeQuestionItem = questions.find(
@@ -42,12 +53,7 @@ export function Carousel({
     } else {
       setShowError(false);
     }
-    if (id === questions.length - 1) {
-      setShowSubmit(true);
-    } else {
-      setShowSubmit(false);
-    }
-    setActiveQuestion(id);
+    changeActiveSlide(id);
   };
 
   const handlePoll = (id: number, answer: OptionDto) => {
@@ -70,9 +76,12 @@ export function Carousel({
       return item;
     });
 
-    setShowError(false);
     handleQuestion(result);
-    // handleActive(id + 1);
+    setShowError(false);
+
+    if (slideOnSelect) {
+      changeActiveSlide(id + 1);
+    }
   };
 
   return (

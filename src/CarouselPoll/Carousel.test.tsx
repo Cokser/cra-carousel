@@ -5,7 +5,11 @@ import { PollContext } from "../shared/hooks/usePollContext";
 
 const defaultComponent = (
   <PollContext.Provider value={ITEMS_LIST.data}>
-    <Carousel handleSubmit={() => {}} handleQuestion={() => {}} />
+    <Carousel
+      handleSubmit={() => {}}
+      handleQuestion={() => {}}
+      slideOnSelect={false}
+    />
   </PollContext.Provider>
 );
 

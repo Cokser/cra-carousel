@@ -25,6 +25,7 @@ export function App() {
             <Carousel
               handleQuestion={setQuestions}
               handleSubmit={submitPoll}
+              slideOnSelect
               ordered
             />
           </PollContext.Provider>
