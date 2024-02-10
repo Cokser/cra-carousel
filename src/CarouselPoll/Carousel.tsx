@@ -128,6 +128,7 @@ export function Carousel({
                     questionId={item.id}
                     handlePoll={handlePoll}
                     answer={item.answer}
+                    isDisabled={item.id !== activeQuestion}
                   />
                 ))}
               </div>
