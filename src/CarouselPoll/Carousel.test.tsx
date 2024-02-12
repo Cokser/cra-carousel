@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { ITEMS_LIST } from "../shared/api/mockApi";
 import { Carousel } from "./Carousel";
 import { PollContext } from "../shared/hooks/usePollContext";

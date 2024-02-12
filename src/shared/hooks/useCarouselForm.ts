@@ -5,7 +5,7 @@ import { getPolls, postPolls } from "../services/pollService";
 export function useCarouselForm() {
   const [data, setData] = useState<ListItemDto[] | undefined>();
 
-  useEffect(() => {
+  const getMockedPolls = () => {
     getPolls().then((json) => {
       const summaryItem: ListItemDto = {
         id: json.data.length,
@@ -15,6 +15,10 @@ export function useCarouselForm() {
       };
       setData([...json.data, summaryItem]);
     });
+  };
+
+  useEffect(() => {
+    getMockedPolls();
   }, []);
 
   const handleSubmit = (body: QuestionsListDto) => {
@@ -22,13 +26,7 @@ export function useCarouselForm() {
       (question) => question.isSammary === false
     );
     postPolls(filteredQuestions).then((json) => {
-      const summaryItem: ListItemDto = {
-        id: json.data.length,
-        title: "Summary",
-        options: [],
-        isSammary: true,
-      };
-      setData([...json.data, summaryItem]);
+      getMockedPolls(); //     cleaning up hook's data after poll submit
     });
   };
 

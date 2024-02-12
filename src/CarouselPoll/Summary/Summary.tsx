@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { ListItemDto, QuestionsListDto } from "../../shared/models/questions";
 import { IconButton } from "../../shared/ui";
+import PollSuccess from "../PollSuccess/PollSuccess";
 
 export interface SummaryProps {
   questions: ListItemDto[];
   handleSubmit: (obj: QuestionsListDto) => void;
 }
 function Summary({ questions, handleSubmit }: SummaryProps) {
-  return (
+  const [showSuccess, setShowSuccess] = useState(false);
+  const submitPoll = () => {
+    handleSubmit({ data: questions });
+    setShowSuccess(true);
+  };
+  return showSuccess ? (
+    <>
+      <PollSuccess />
+    </>
+  ) : (
     <>
       <div className="flex flex-col w-1/2 bg-indigo-500 ml-8 h-screen justify-center items-center p-10 animate-slide-in">
         {questions?.map(
@@ -22,7 +32,7 @@ function Summary({ questions, handleSubmit }: SummaryProps) {
         )}
         <button
           type="submit"
-          onClick={() => handleSubmit({ data: questions })}
+          onClick={submitPoll}
           className={`w-28 h-12 rounded-md border-2 border-white text-white transition ease-in-out delay-50 hover:bg-indigo-300`}
         >
           Submit

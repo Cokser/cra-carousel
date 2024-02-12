@@ -36,6 +36,13 @@ export function Carousel({
     setActiveQuestion(id);
   };
 
+  const submitPoll = (data: QuestionsListDto) => {
+    handleSubmit(data);
+    setTimeout(() => {
+      changeActiveSlide(0);
+    }, 3000);
+  };
+
   const handleActive = (id: number) => {
     const activeQuestionItem = questions.find(
       (item) => activeQuestion === item.id
@@ -95,7 +102,7 @@ export function Carousel({
                 transform: `translateY(-${activeQuestion * 100}%)`,
               }}
             >
-              <Summary questions={questions} handleSubmit={handleSubmit} />
+              <Summary questions={questions} handleSubmit={submitPoll} />
             </div>
             <div className="flex w-full">
               <div className="flex w-1/2 bg-indigo-500 justify-start items-center pl-16">
